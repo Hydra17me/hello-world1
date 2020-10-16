@@ -1,0 +1,24 @@
+{
+	//功能：实现字符串的拷贝
+	//说明：两字符串内存区域 可以 有重叠
+	//	负责添加'\0'
+	//	发生错误返回NULL
+	//	指针判空
+	if(strDst==NULL || strSrc==NULL){
+		return NULL;
+	}
+	//复制到临时字符串
+	int len = strlen(strSrc)+1;
+	char *strTmp = new char[len];
+	if(strTmp == NULL){
+		return NULL;
+	}
+	char *pTmp = strTmp;//保存首地址
+	while((*strTmp++ = *strSrc++) != '\0');
+	//复制到目标字符串
+	strTmp = pTmp;//恢复起点
+	while((*strDst++ = *strTmp++) != '\0');
+	delete[] pTmp;
+ 
+	return strDst;
+}
